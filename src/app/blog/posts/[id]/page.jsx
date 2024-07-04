@@ -2,14 +2,16 @@
 
 import { useState, useEffect } from "react";
 
-export default function BlogPost({ params }: { params: { id: number } }) {
+export default function BlogPost({ params }) {
   const [data, setData] = useState(null);
 
   useEffect(() => {
     fetch(`https://jsonplaceholder.typicode.com/posts/${params.id}`)
       .then((response) => response.json())
-      .then((data) => setData(data));
-  }, []);
+      .then((data) =>
+        setData(data)
+      );
+  }, [params.id]);
 
   return (
     <div className="p-20">
